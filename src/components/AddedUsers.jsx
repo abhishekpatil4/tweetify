@@ -4,7 +4,7 @@ import { useState, useEffect, useCallback } from "react";
 import SkeletonLoader from "./SkeletonLoader";
 import { updateAuthorisedUserConnectionStatus } from "../config/firebase";
 
-const AddedUsers = ({ authorisedUsers, adminId }) => {
+const AddedUsers = ({ authorisedUsers, adminId, adminUsername }) => {
     const [connectedUsers, setConnectedUsers] = useState([]);
     const [connected, setConnected] = useState(false);
     const [fetchingUsers, setFetchingUsers] = useState(false);
@@ -15,7 +15,7 @@ const AddedUsers = ({ authorisedUsers, adminId }) => {
             authorisedUsers.map(async (user) => {
                 let isConnected = user.isConnected;
                 if (!isConnected) {
-                    let res = await checkConnectionStatus("TWITTER", setConnected, user.username);
+                    let res = await checkConnectionStatus(adminUsername, "TWITTER", setConnected, user.username);
                     if (res === "yes") {
                         isConnected = true;
                         await updateAuthorisedUserConnectionStatus(adminId, user.username);

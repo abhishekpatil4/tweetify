@@ -12,7 +12,7 @@ import NotFound from "./pages/NotFound";
 import SkeletonLoader from "./components/SkeletonLoader";
 import { SnackbarProvider } from 'notistack'
 import CreatePost from "./pages/CreatePost";
-import Repost from "./pages/Repost";
+import RepostExistingTweet from "./pages/Repost";
 
 const ProtectedRoute = ({ user, children }) => {
   if (!user) {
@@ -57,7 +57,7 @@ const App = () => {
           } />
           <Route path="/repost" element={
             <ProtectedRoute user={user}>
-              <Repost user={user} />
+              <RepostExistingTweet user={user} />
             </ProtectedRoute>
           } />
           <Route path="/" element={<Home />} />

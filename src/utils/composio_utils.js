@@ -56,10 +56,11 @@ const linkTwitterAccount = async (admin, user) => {
     }
 }
 
-const checkConnectionStatus = async (appType, setAccountStatus, entityId) => {
+const checkConnectionStatus = async (admin_username, appType, setAccountStatus, entityId) => {
     try {
         const idToken = await auth.currentUser.getIdToken(true);
         const data = {
+            admin_username: admin_username,
             username: entityId,
             appType: appType
         };

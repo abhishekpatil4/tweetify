@@ -20,7 +20,7 @@ const Settings = ({ user }) => {
             setComposioApiKey(apiKey);
         }
         getApiKey();
-        checkConnectionStatus("TWITTER", setTwitterAccount, user.email.split("@")[0]);
+        checkConnectionStatus(user.email.split("@")[0], "TWITTER", setTwitterAccount, user.email.split("@")[0]);
         setUsername(user.email.split("@")[0]);
     }, [user.uid, checkConnectionStatus]);
 

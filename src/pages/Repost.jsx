@@ -9,7 +9,7 @@ import { Audio } from 'react-loader-spinner';
 import SettingsAttribute from "../components/SettingsAttribute";
 import GetPostTextArea from "../components/GetPostTextArea";
 
-const CreatePost = ({ user }) => {
+const RepostExistingTweet = ({ user }) => {
     const { enqueueSnackbar } = useSnackbar();
     const [twitterPostUrl, setTwitterPostUrl] = useState("tweet url");
     const [tweetId, setTweetId] = useState("");
@@ -78,11 +78,13 @@ const CreatePost = ({ user }) => {
             setPosting(true);
             const idToken = await auth.currentUser.getIdToken(true);
             const tweetURL = import.meta.env.VITE_BACKEND_URL + "/repostexisting";
+            const admin__id = user.email.split("@")[0];
             const repostDataList = authorisedUsers.map(user => ({
                 entity_id: user.username,
                 quote: user.quote
             }));
             const response = await axios.post(tweetURL, {
+                admin_entity_id: admin__id,
                 tweet_id: tweetId,
                 repost_data_list: repostDataList
             }, {
@@ -150,9 +152,9 @@ const CreatePost = ({ user }) => {
         {/* <div className="border border-gray-200 rounded-md flex flex-col gap-4 py-5 mt-12"> */}
         <div className="flex flex-col py-5 mt-12">
             <Separator title="Reposters" />
-            <AuthorizedUsers authorisedUsers={authorisedUsers} setAuthorisedUsers={setAuthorisedUsers} allAuthorisedUsers={allAuthorisedUsers} setAllAuthorisedUsers={setAllAuthorisedUsers}/>
+            <AuthorizedUsers authorisedUsers={authorisedUsers} setAuthorisedUsers={setAuthorisedUsers} allAuthorisedUsers={allAuthorisedUsers} setAllAuthorisedUsers={setAllAuthorisedUsers} />
         </div>
     </div>
 };
 
-export default CreatePost;
+export default RepostExistingTweet;

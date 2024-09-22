@@ -118,7 +118,7 @@ const AddNewUser = ({ user }) => {
         <UsersIcon />
         <AddNewUserSearchBar open={newUserSearchBarOpen} setOpen={setNewUserSearchBarOpen} newUser={newUser} setNewUser={setNewUser} handleNewAddUser={handleNewAddUser} />
         <AddNewUserOutline loading={addingUser} onClick={() => setNewUserSearchBarOpen(true)} />
-        <AddedUsers authorisedUsers={authorisedUsers} adminId={user.uid} />
+        <AddedUsers authorisedUsers={authorisedUsers} adminId={user.uid} adminUsername={user.email.split("@")[0]}/>
     </div>
 }
 
