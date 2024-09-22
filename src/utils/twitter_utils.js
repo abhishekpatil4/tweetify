@@ -1,20 +1,31 @@
 import axios from 'axios';
+import { auth } from '../config/firebase';
 
 const getUserDataByUsername = async (username) => {
-  const token = "Bearer " + import.meta.env.VITE_TWITTER_TOKEN
   try {
-    const response = await axios.get(`/twitter/2/users/by/username/${username}`, {
-      params: {
-        'user.fields': 'description,id,name,profile_image_url,username'
-      },
+    const idToken = await auth.currentUser.getIdToken(true);
+    const token = "Bearer " + idToken;
+    const getUserTwitterDataURL = import.meta.env.VITE_BACKEND_URL + "/getusertwitterdata"
+    const response = await axios.post(getUserTwitterDataURL, {
+      username: username
+    }, {
       headers: {
         'Authorization': token
       }
     });
     return response.data;
   } catch (error) {
-    console.error('Error fetching user data:', error);
-    throw error;
+    if (error.response) {
+      if (error.response.status === 404) {
+        return { error: "Username not found." };
+      } else if (error.response.status === 429) {
+        return { error: "Too many requests. Please try again later." };
+      } else {
+        return { error: `HTTP error occurred: ${error.response.data.error}` };
+      }
+    } else {
+      return { error: 'An error occurred while fetching user data.' };
+    }
   }
 };
 

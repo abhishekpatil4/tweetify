@@ -1,8 +1,5 @@
 import getUserDataByUsername from "../utils/twitter_utils";
 import { useSnackbar } from "notistack";
-import { Audio } from "react-loader-spinner";
-import SmallButton from "./SmallButton";
-import Separator from "./Separator";
 import { useState } from "react";
 import AddedUsers from "./AddedUsers";
 import { auth, getUserDetailsByUid, addUserToAuthorisedUsers } from "../config/firebase";
@@ -60,16 +57,18 @@ const AddNewUser = ({ user }) => {
 
     const fetchTwitterUserData = async (username) => {
         try {
-            return await getUserDataByUsername(username);
+            const userData = await getUserDataByUsername(username);
+            if (userData.error) {
+                enqueueSnackbar(userData.error, { variant: 'error' });
+                setAddingUser(false);
+                return null;
+            }
+            return userData;
         } catch (error) {
             console.error('Error fetching user data:', error);
-            if (error.response && error.response.status === 429) {
-                enqueueSnackbar('Too many requests. Please try again later.', { variant: 'error' });
-            } else {
-                enqueueSnackbar('Failed to fetch user data. Please check the username and try again.', { variant: 'error' });
-            }
+            enqueueSnackbar('Failed to fetch user data. Please check the username and try again.', { variant: 'error' });
             setAddingUser(false);
-            return;
+            return null;
         }
     }
 
@@ -93,14 +92,19 @@ const AddNewUser = ({ user }) => {
         }
         const userData = await fetchTwitterUserData(newUser);
         if (!userData) {
+            setAddingUser(false);
             return;
         }
         //add feat to link twitter account here by passing the username, store the url
         try {
             let url = await linkTwitterAccount(user.email.split("@")[0], newUser);
             await addUserToAuthorisedUsers(user.uid, userData, url);
-            setAuthorisedUsers([...authorisedUsers, { description: userData.data.description, id: userData.data.id, name: userData.data.name, profile_image_url: userData.data.profile_image_url, username: userData.data.username, isConnected: false, authUrl: url }]);
-            enqueueSnackbar('User added successfully.', { variant: 'success' });
+            if (userData.data) {
+                setAuthorisedUsers([...authorisedUsers, { description: userData.data.description, id: userData.data.id, name: userData.data.name, profile_image_url: userData.data.profile_image_url, username: userData.data.username, isConnected: false, authUrl: url }]);
+                enqueueSnackbar('User added successfully.', { variant: 'success' });
+            } else {
+                enqueueSnackbar('Failed to add user. Username might be invalid.', { variant: 'error' });
+            }
         } catch (error) {
             console.error('Error:', error);
             enqueueSnackbar('An error occurred while adding the user', { variant: 'error' });
