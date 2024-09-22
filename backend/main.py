@@ -7,7 +7,7 @@ from composio_config import createNewEntity, isEntityConnected, createTwitterInt
 import logging
 from quote_generator import generate_repost_quote
 from new_tweet_repost import create_new_tweet_and_repost
-from twitter_functions import get_tweet_text_by_id
+from twitter_functions import get_tweet_text_by_id, get_user_data_by_username
 from repost_existing_tweet import repost_existing
 
 logging.basicConfig(level=logging.INFO)
@@ -43,7 +43,7 @@ class UserData(BaseModel):
     username: str
     appType: str
 
-class EnableTriggerData(BaseModel):
+class TwitterUserData(BaseModel):
     username: str
 
 class InitialiseAgentData(BaseModel):
@@ -139,6 +139,24 @@ async def handle_request(tweet_data: GetTweetData, decoded_token: dict = Depends
         if e.response.status_code == 400:
             return {"error": "An error occurred: 400 Client Error: Bad Request for url: https://api.twitter.com/2/tweets"}, 400
         return {"error": str(e)}, 500
+
+@app.post("/getusertwitterdata")
+async def handle_request(user_data: TwitterUserData, decoded_token: dict = Depends(verify_token)):
+    username = user_data.username
+    try:
+        res = get_user_data_by_username(username)
+        if res is None:
+            return {"error": "An error occurred while fetching user data."}, 500
+        return res
+    except requests.exceptions.HTTPError as e:
+        if e.response.status_code == 404:
+            return {"error": "Username not found."}, 404
+        elif e.response.status_code == 429:
+            return {"error": "Too many requests. Please try again later."}, 429
+        else:
+            return {"error": f"HTTP error occurred: {e}"}, e.response.status_code
+    except requests.exceptions.RequestException as e:
+        return {"error": f"An error occurred: {e}"}, 500
 
 @app.get("/")
 async def handle_request():
