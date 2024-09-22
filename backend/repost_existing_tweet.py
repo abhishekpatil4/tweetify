@@ -11,8 +11,9 @@ load_dotenv()
 
 llm = ChatOpenAI(model="gpt-4o")
 
-def repost_tweet(entity_id: str, task_description: str) -> str:
-    composio_toolset = ComposioToolSet(api_key=get_composio_api_key(entity_id), entity_id=entity_id)
+def repost_tweet(admin_entity_id: str, entity_id: str, task_description: str) -> str:
+    comp_api_key = get_composio_api_key(admin_entity_id)    
+    composio_toolset = ComposioToolSet(api_key=comp_api_key, entity_id=entity_id)
     # tools = composio_toolset.get_actions(actions=[Action.TWITTER_CREATION_OF_A_POST, Action.TWITTER_CAUSES_THE_USER_IN_THE_PATH_TO_REPOST_THE_SPECIFIED_POST, Action.TWITTER_USER_LOOKUP_BY_USERNAME])
     tools = composio_toolset.get_actions(actions=[Action.TWITTER_CREATION_OF_A_POST, Action.TWITTER_CAUSES_THE_USER_IN_THE_PATH_TO_REPOST_THE_SPECIFIED_POST])
     twitter_agent = Agent(
@@ -42,7 +43,7 @@ def repost_tweet(entity_id: str, task_description: str) -> str:
     return result
 
 
-def repost_existing(tweet_id: str, repost_data_list: list):
+def repost_existing(admin_entity_id: str, tweet_id: str, repost_data_list: list):
     for repost_data in repost_data_list:
         entity_id = repost_data["entity_id"]
         quote = repost_data["quote"]
@@ -58,7 +59,7 @@ def repost_existing(tweet_id: str, repost_data_list: list):
             Repost the tweet with ID {tweet_id} without any quote and user ID {user_id}
             """
         
-        repost_result = repost_tweet(entity_id, task_description)
+        repost_result = repost_tweet(admin_entity_id, entity_id, task_description)
         print(f"Repost result for {entity_id}: {repost_result}")
 
     return "Tweeting and reposting process completed."

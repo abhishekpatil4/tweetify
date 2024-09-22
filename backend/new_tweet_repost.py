@@ -3,16 +3,17 @@ from composio_crewai import Action, ComposioToolSet
 from crewai import Agent, Crew, Task, Process
 from langchain_openai import ChatOpenAI
 from dotenv import load_dotenv
-from pathlib import Path
-from firebase.init import get_composio_api_key
+from firebase.init_class import FirebaseService
 from twitter_functions import get_user_id_by_username
 
 load_dotenv()
+firebase_service = FirebaseService()
 
 llm = ChatOpenAI(model="gpt-4o")
 
 def post_twitter_message(entity_id: str, message: str) -> str:
-    composio_toolset = ComposioToolSet(api_key=get_composio_api_key(entity_id), entity_id=entity_id)
+    comp_api_key = firebase_service.get_composio_api_key(entity_id)
+    composio_toolset = ComposioToolSet(api_key=comp_api_key, entity_id=entity_id)
     tools = composio_toolset.get_actions(actions=[Action.TWITTER_CREATION_OF_A_POST])
     twitter_agent = Agent(
         role="Twitter Agent",
@@ -46,8 +47,9 @@ def post_twitter_message(entity_id: str, message: str) -> str:
     result = twitter_processing_crew.kickoff()
     return result
 
-def repost_tweet(entity_id: str, task_description: str) -> str:
-    composio_toolset = ComposioToolSet(api_key=get_composio_api_key(entity_id), entity_id=entity_id)
+def repost_tweet(admin_entity_id: str, entity_id: str, task_description: str) -> str:
+    comp_api_key = firebase_service.get_composio_api_key(admin_entity_id)
+    composio_toolset = ComposioToolSet(api_key=comp_api_key, entity_id=entity_id)
     # tools = composio_toolset.get_actions(actions=[Action.TWITTER_CREATION_OF_A_POST, Action.TWITTER_CAUSES_THE_USER_IN_THE_PATH_TO_REPOST_THE_SPECIFIED_POST, Action.TWITTER_USER_LOOKUP_BY_USERNAME])
     tools = composio_toolset.get_actions(actions=[Action.TWITTER_CREATION_OF_A_POST, Action.TWITTER_CAUSES_THE_USER_IN_THE_PATH_TO_REPOST_THE_SPECIFIED_POST])
     twitter_agent = Agent(
@@ -79,7 +81,6 @@ def repost_tweet(entity_id: str, task_description: str) -> str:
 
 def create_new_tweet_and_repost(initial_tweet_entity_id: str, initial_tweet: str, repost_data_list: list):
     tweet_id = post_twitter_message(initial_tweet_entity_id, initial_tweet)
-    
     for repost_data in repost_data_list:
         entity_id = repost_data["entity_id"]
         quote = repost_data["quote"]
@@ -95,7 +96,7 @@ def create_new_tweet_and_repost(initial_tweet_entity_id: str, initial_tweet: str
             Repost the tweet with ID {tweet_id} without any quote and user ID {user_id}
             """
         
-        repost_result = repost_tweet(entity_id, task_description)
+        repost_result = repost_tweet(initial_tweet_entity_id, entity_id, task_description)
         print(f"Repost result for {entity_id}: {repost_result}")
 
     return "Tweeting and reposting process completed."

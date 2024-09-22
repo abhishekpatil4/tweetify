@@ -40,6 +40,7 @@ def verify_token(auth_credentials: HTTPAuthorizationCredentials = Depends(
 
 # Pydantic models
 class UserData(BaseModel):
+    admin_username: str
     username: str
     appType: str
 
@@ -62,6 +63,7 @@ class TweetRequestData(BaseModel):
     repost_data_list: list
 
 class RepostExistingData(BaseModel):
+    admin_entity_id: str
     tweet_id: str
     repost_data_list: list
 
@@ -97,9 +99,10 @@ async def handle_request(user_data: NewEntityData,
 async def handle_request(user_data: UserData,
                          decoded_token: dict = Depends(verify_token)):
     user_id = decoded_token['uid']
+    admin_username = user_data.admin_username
     username = user_data.username
     appType = user_data.appType
-    res = isEntityConnected(username, appType)
+    res = isEntityConnected(admin_username, username, appType)
     return res
 
 @app.post("/getquotes")
@@ -124,9 +127,10 @@ async def handle_request(tweet_request_data: TweetRequestData,
 @app.post("/repostexisting")
 async def handle_request(tweet_request_data: RepostExistingData,
                          decoded_token: dict = Depends(verify_token)):
+    admin_entity_id = tweet_request_data.admin_entity_id
     tweet_id = tweet_request_data.tweet_id
     repost_data_list = tweet_request_data.repost_data_list
-    res = repost_existing(tweet_id, repost_data_list)
+    res = repost_existing(admin_entity_id, tweet_id, repost_data_list)
     return {"result": res}
 
 @app.post("/gettweet")
