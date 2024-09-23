@@ -51,6 +51,7 @@ class InitialiseAgentData(BaseModel):
     username: str
 
 class TweetData(BaseModel):
+    prompt: str
     tweetContent: str
     numberOfQuotes: int
 
@@ -109,9 +110,10 @@ async def handle_request(user_data: UserData,
 async def handle_request(tweet_data: TweetData,
                          decoded_token: dict = Depends(verify_token)):
     user_id = decoded_token['uid']
+    prompt = tweet_data.prompt
     tweet_content = tweet_data.tweetContent
     number_of_quotes = tweet_data.numberOfQuotes
-    res = generate_repost_quote(tweet_content, number_of_quotes)
+    res = generate_repost_quote(prompt, tweet_content, number_of_quotes)
     return {"quotes": res}
 
 @app.post("/newtweetandrepost")
