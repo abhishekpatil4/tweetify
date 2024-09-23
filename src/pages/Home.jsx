@@ -3,14 +3,16 @@ import Benefits from "../components/Benefits";
 import FAQ from "../components/FAQ";
 import Working from "../components/Working";
 import ActionButton from "../components/ActionButton";
+import DemoVideo from "../components/DemoVideo";
 const Home = () => {
-    return <section className="bg-white dark:bg-gray-900 mt-12">
-        <div className="py-8 px-4 mx-auto max-w-screen-xl text-center lg:py-16 lg:px-12">
+    return <section className="bg-white dark:bg-gray-900 mt-24">
+        <div className="px-4 mx-auto max-w-screen-xl text-center py-16">
             <Hero />
             <Benefits />
+            <DemoVideo />
             <Working />
             <FAQ />
-            <div className="mt-20">
+            <div className="mt-32">
                 <ActionButton displayName={"Get started"} link={"#"} />
             </div>
         </div>

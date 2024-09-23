@@ -5,22 +5,22 @@ const faqData = [
     {
         id: 1,
         question: "What is Tweetify?",
-        answer: "Tweetify is a powerful tool that enhances your Twitter experience. It allows you to create tweets, schedule them for future posting, generate shareable links for collaborative posting, and create retweet content."
+        answer: "Tweetify is a powerful tool that enhances your Twitter experience. It allows you to create tweets, generate shareable links for collaborative posting, and create retweet content"
     },
     {
         id: 2,
         question: "How does Tweetify work?",
-        answer: "Tweetify integrates with your Twitter account and provides a user-friendly interface. You can compose tweets, set up scheduling, generate permission links for other users, and use AI to create engaging retweet content."
+        answer: "Tweetify integrates with your Twitter account and provides a user-friendly interface for generating permission links for other users, and use AI to create engaging retweet content and repost on their behalf"
     },
     {
         id: 3,
         question: "What are the main features of Tweetify?",
-        answer: "Tweetify offers four key features: 1) Tweet creation, 2) Tweet scheduling for optimal posting times, 3) Shareable permission links to allow others to post on your behalf, and 4) AI-powered retweet content generation."
+        answer: "Tweetify offers four key features: 1) Tweet creation, 2) Shareable permission links can be generated, other people will provide authorization, and you can post on their behalf, and 3) AI-powered retweet content generation."
     },
     {
         id: 4,
         question: "How do I get started with Tweetify?",
-        answer: "To get started with Tweetify, click the 'Get Started' button on our website. Connect your Twitter account, and you'll immediately have access to our tweet creation and scheduling tools."
+        answer: "To get started with Tweetify, click the 'Get Started' button. Connect your Twitter account, add other users on behalf of whom you want to repost. Generate a link using which they can authorize, then start posting."
     },
     {
         id: 5,
