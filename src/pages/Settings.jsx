@@ -7,6 +7,9 @@ import Separator from "../components/Separator";
 import AddNewUser from "../components/AddNewUser";
 import { handleDriverSettingsPage } from "../utils/driver_utils";
 import HelpButton from "../components/HelpButton";
+import { driverObjSettingsPageConfig } from "../utils/driver_data_utils";
+const driver = window.driver.js.driver;
+
 
 const Settings = ({ user }) => {
     const { enqueueSnackbar } = useSnackbar();
@@ -20,7 +23,7 @@ const Settings = ({ user }) => {
         const getApiKey = async () => {
             const apiKey = await getComposioApiKey(user.uid);
             if (apiKey === "") {
-                handleDriverSettingsPage();
+                driver(driverObjSettingsPageConfig).drive();
             }
             setComposioApiKey(apiKey);
         }
@@ -57,7 +60,7 @@ const Settings = ({ user }) => {
         </div>
         <br />
         <AddNewUser user={user} />
-        <HelpButton action={handleDriverSettingsPage} />
+        {/* <HelpButton action={handleDriverSettingsPage} /> */}
     </div>
 };
 

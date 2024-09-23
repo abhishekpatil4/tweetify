@@ -156,7 +156,7 @@ const RepostExistingTweet = ({ user }) => {
             <Separator title="Reposters" />
             <AuthorizedUsers authorisedUsers={authorisedUsers} setAuthorisedUsers={setAuthorisedUsers} allAuthorisedUsers={allAuthorisedUsers} setAllAuthorisedUsers={setAllAuthorisedUsers} />
         </div>
-        <HelpButton action={handleDriverRepostPage} />
+        {/* <HelpButton action={handleDriverRepostPage} /> */}
     </div>
 };
 

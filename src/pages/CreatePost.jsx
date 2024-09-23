@@ -116,7 +116,7 @@ const CreatePost = ({ user }) => {
             <Separator title="Reposters" />
             <AuthorizedUsers authorisedUsers={authorisedUsers} setAuthorisedUsers={setAuthorisedUsers} allAuthorisedUsers={allAuthorisedUsers} setAllAuthorisedUsers={setAllAuthorisedUsers} />
         </div>
-        <HelpButton action={handleDriverCreatePostPage} />
+        {/* <HelpButton action={handleDriverCreatePostPage} /> */}
     </div>
 };
 
