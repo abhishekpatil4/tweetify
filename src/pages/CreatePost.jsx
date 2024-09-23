@@ -6,8 +6,9 @@ import { getUserDetailsByUid } from "../config/firebase";
 import axios from "axios";
 import { auth } from "../config/firebase";
 import CreatePostTextArea from "../components/CreatePostTextArea";
-import { handleDriverCreatePostPage } from "../utils/driver_utils";
 import HelpButton from "../components/HelpButton";
+import { driverObjCreatePostPageConfig } from "../utils/driver_config_utils";
+const driver = window.driver.js.driver;
 
 const CreatePost = ({ user }) => {
     const { enqueueSnackbar } = useSnackbar();
@@ -17,6 +18,7 @@ const CreatePost = ({ user }) => {
     const [posting, setPosting] = useState(false);
     const [generatingQuotes, setGeneratingQuotes] = useState(false);
     const [allAuthorisedUsers, setAllAuthorisedUsers] = useState([]);
+    const [handleDriverCreatePostPage, setHandleDriverCreatePostPage] = useState(() => { });
     const fetchUserDetails = async () => {
         setLoading(true);
         try {
@@ -102,6 +104,10 @@ const CreatePost = ({ user }) => {
     }
 
     useEffect(() => {
+        const drive = () => {
+            driver(driverObjCreatePostPageConfig).drive();
+        }
+        setHandleDriverCreatePostPage(() => drive); 
         fetchUserDetails();
     }, []);
 
@@ -116,7 +122,7 @@ const CreatePost = ({ user }) => {
             <Separator title="Reposters" />
             <AuthorizedUsers authorisedUsers={authorisedUsers} setAuthorisedUsers={setAuthorisedUsers} allAuthorisedUsers={allAuthorisedUsers} setAllAuthorisedUsers={setAllAuthorisedUsers} />
         </div>
-        {/* <HelpButton action={handleDriverCreatePostPage} /> */}
+        <HelpButton action={handleDriverCreatePostPage} />
     </div>
 };
 

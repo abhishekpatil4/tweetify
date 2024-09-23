@@ -5,9 +5,8 @@ import { getComposioApiKey, updateComposioApiKey } from "../config/firebase";
 import { useSnackbar } from 'notistack'
 import Separator from "../components/Separator";
 import AddNewUser from "../components/AddNewUser";
-import { handleDriverSettingsPage } from "../utils/driver_utils";
 import HelpButton from "../components/HelpButton";
-import { driverObjSettingsPageConfig } from "../utils/driver_data_utils";
+import { driverObjSettingsPageConfig } from "../utils/driver_config_utils";
 const driver = window.driver.js.driver;
 
 
@@ -18,14 +17,20 @@ const Settings = ({ user }) => {
     const [twitterAccountLoading, setTwitterAccountLoading] = useState(false);
     const [composioApiKey, setComposioApiKey] = useState("");
     const [composioApiKeyLoading, setComposioApiKeyLoading] = useState(false);
+    const [handleDriverSettingsPage, setHandleDriverSettingsPage] = useState(() => { });
 
     useEffect(() => {
+        const drive = () => {
+            driver(driverObjSettingsPageConfig).drive();
+        }
+        setHandleDriverSettingsPage(() => drive);
         const getApiKey = async () => {
             const apiKey = await getComposioApiKey(user.uid);
             if (apiKey === "") {
-                driver(driverObjSettingsPageConfig).drive();
+                drive();
+            } else {
+                setComposioApiKey(apiKey);
             }
-            setComposioApiKey(apiKey);
         }
         getApiKey();
         checkConnectionStatus(user.email.split("@")[0], "TWITTER", setTwitterAccount, user.email.split("@")[0]);
@@ -60,7 +65,7 @@ const Settings = ({ user }) => {
         </div>
         <br />
         <AddNewUser user={user} />
-        {/* <HelpButton action={handleDriverSettingsPage} /> */}
+        <HelpButton action={handleDriverSettingsPage} />
     </div>
 };
 

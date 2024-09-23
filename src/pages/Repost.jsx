@@ -8,8 +8,9 @@ import { auth } from "../config/firebase";
 import { Audio } from 'react-loader-spinner';
 import SettingsAttribute from "../components/SettingsAttribute";
 import GetPostTextArea from "../components/GetPostTextArea";
-import { handleDriverRepostPage } from "../utils/driver_utils";
 import HelpButton from "../components/HelpButton";
+import { driverObjRepostPageConfig } from "../utils/driver_config_utils";
+const driver = window.driver.js.driver;
 
 const RepostExistingTweet = ({ user }) => {
     const { enqueueSnackbar } = useSnackbar();
@@ -22,6 +23,7 @@ const RepostExistingTweet = ({ user }) => {
     const [posting, setPosting] = useState(false);
     const [generatingQuotes, setGeneratingQuotes] = useState(false);
     const [allAuthorisedUsers, setAllAuthorisedUsers] = useState([]);
+    const [handleDriverRepostPage, setHandleDriverRepostPage] = useState(() => { });
 
     const handleGetTweetText = async () => {
         setTwitterPostUrlLoading(true);
@@ -140,6 +142,10 @@ const RepostExistingTweet = ({ user }) => {
     }
 
     useEffect(() => {
+        const drive = () => {
+            driver(driverObjRepostPageConfig).drive();
+        }
+        setHandleDriverRepostPage(() => drive);
         fetchUserDetails();
     }, []);
 
@@ -156,7 +162,7 @@ const RepostExistingTweet = ({ user }) => {
             <Separator title="Reposters" />
             <AuthorizedUsers authorisedUsers={authorisedUsers} setAuthorisedUsers={setAuthorisedUsers} allAuthorisedUsers={allAuthorisedUsers} setAllAuthorisedUsers={setAllAuthorisedUsers} />
         </div>
-        {/* <HelpButton action={handleDriverRepostPage} /> */}
+        <HelpButton action={handleDriverRepostPage} />
     </div>
 };
 

@@ -1,5 +1,4 @@
-const driver = window.driver.js.driver;
-const driverObjSettingsPage = driver({
+const driverObjSettingsPageConfig = {
     showProgress: true,
     steps: [
         {
@@ -17,9 +16,9 @@ const driverObjSettingsPage = driver({
             }
         },
     ]
-});
+};
 
-const driverObjCreatePostPage = driver({
+const driverObjCreatePostPageConfig = {
     showProgress: true,
     steps: [
         {
@@ -51,9 +50,9 @@ const driverObjCreatePostPage = driver({
             },
         },
     ]
-});
+}
 
-const driverObjRepostPage = driver({
+const driverObjRepostPageConfig = {
     showProgress: true,
     steps: [
         {
@@ -92,18 +91,6 @@ const driverObjRepostPage = driver({
             },
         }
     ]
-});
+};
 
-const handleDriverSettingsPage = () => {
-    driverObjSettingsPage.drive();
-}
-
-const handleDriverCreatePostPage = () => {
-    driverObjCreatePostPage.drive();
-}
-
-const handleDriverRepostPage = () => {
-    driverObjRepostPage.drive();
-}
-
-export { handleDriverSettingsPage, handleDriverCreatePostPage, handleDriverRepostPage };
+export { driverObjSettingsPageConfig, driverObjCreatePostPageConfig, driverObjRepostPageConfig };
