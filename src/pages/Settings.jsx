@@ -37,6 +37,10 @@ const Settings = ({ user }) => {
     }
 
     const handleLinkTwitterAccount = async () => {
+        if(composioApiKey === "") {
+            enqueueSnackbar("Please add Composio API key first", { variant: 'warning' });
+            return;
+        }
         await initiateTwitterConnectionAndConnectAdmin(user.email.split("@")[0], setTwitterAccountLoading);
     }
 
