@@ -4,6 +4,7 @@ import { Loader } from 'rsuite';
 export default function AddNewUserOutline({ loading, onClick }) {
   return (
     <button
+      id="add-new-user-section"
       type="button"
       onClick={onClick}
       className="min-w-3xl mx-8 h-24 rounded-lg border-2 border-dashed border-green-400 px-12 py-2 text-center hover:border-green-500 hover:bg-green-50"

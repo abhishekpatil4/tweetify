@@ -26,6 +26,7 @@ export default function GetPostTextArea({ post, setPost, handlePost, handleGener
                         </div>
                         <div className="flex-shrink-0 flex gap-2">
                             <button
+                                id="generate-retweet-quotes-for-existing-tweet-button"
                                 type="button"
                                 className="focus:outline-none text-white w-60 bg-purple-700 hover:bg-purple-800 font-medium rounded-lg text-sm px-5 py-2.5 h-[2.5rem]"
                                 onClick={handleGenerateQuotes}
@@ -33,6 +34,7 @@ export default function GetPostTextArea({ post, setPost, handlePost, handleGener
                                 {generatingQuotes ? <Loader speed="slow" size="sm" /> : "Generate Retweet Quotes"}
                             </button>
                             <button
+                                id="repost-existing-tweet-button"
                                 type="submit"
                                 className="w-24 focus:outline-none text-white bg-purple-700 hover:bg-purple-800 font-medium rounded-lg text-sm px-5 py-2.5 h-[2.5rem]"
                             >
