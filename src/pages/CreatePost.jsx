@@ -104,15 +104,15 @@ const CreatePost = ({ user }) => {
     }, []);
 
     return <div className="flex flex-1 flex-col gap-6 min-h-screen py-8 px-4 mx-auto mt-10 max-w-screen-md text-center lg:py-16 lg:px-12">
-        <div className="border border-gray-200 rounded-md bg-white px-16 py-8 gap-6 flex flex-col">
+        <div className="border border-gray-200 rounded-md bg-white px-16 py-8 gap-6 flex flex-col shadow-md">
             <Separator title="Create Post" />
             <div className="flex flex-col gap-8 items-center justify-center">
                 <CreatePostTextArea post={post} setPost={setPost} handlePost={handlePost} handleGenerateQuotes={handleGenerateQuotes} posting={posting} generatingQuotes={generatingQuotes} />
             </div>
         </div>
-        <div className="pt-12">
+        <div className="mt-12 pt-8 pb-16  border border-gray-200 rounded-md bg-white shadow-md">
             <Separator title="Reposters" />
-            <AuthorizedUsers authorisedUsers={authorisedUsers} setAuthorisedUsers={setAuthorisedUsers} allAuthorisedUsers={allAuthorisedUsers} setAllAuthorisedUsers={setAllAuthorisedUsers}/>
+            <AuthorizedUsers authorisedUsers={authorisedUsers} setAuthorisedUsers={setAuthorisedUsers} allAuthorisedUsers={allAuthorisedUsers} setAllAuthorisedUsers={setAllAuthorisedUsers} />
         </div>
     </div>
 };

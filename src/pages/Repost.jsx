@@ -142,7 +142,7 @@ const RepostExistingTweet = ({ user }) => {
     }, []);
 
     return <div className="flex flex-1 flex-col gap-6 min-h-screen py-8 px-4 mx-auto mt-10 max-w-screen-md text-center lg:py-16 lg:px-12">
-        <div className="border border-gray-200 rounded-md bg-white px-16 py-8 gap-6 flex flex-col">
+        <div className="border border-gray-200 rounded-md bg-white px-16 py-8 gap-6 flex flex-col shadow-md">
             <Separator title="Get Post" />
             <div className="flex flex-col gap-4 items-center justify-center">
                 <SettingsAttribute type="password" displayName="Tweet Url" value={twitterPostUrl} linkAction={handleGetTweetText} loading={twitterPostUrlLoading} buttonName="Get" onChangeFunction={setTwitterPostUrl} readOnly={false} nolabel={true} placeholder="enter tweet url" />
@@ -150,7 +150,7 @@ const RepostExistingTweet = ({ user }) => {
             </div>
         </div>
         {/* <div className="border border-gray-200 rounded-md flex flex-col gap-4 py-5 mt-12"> */}
-        <div className="flex flex-col py-5 mt-12">
+        <div className="mt-12 pt-8 pb-16  border border-gray-200 rounded-md bg-white shadow-md">
             <Separator title="Reposters" />
             <AuthorizedUsers authorisedUsers={authorisedUsers} setAuthorisedUsers={setAuthorisedUsers} allAuthorisedUsers={allAuthorisedUsers} setAllAuthorisedUsers={setAllAuthorisedUsers} />
         </div>

@@ -114,7 +114,7 @@ const AddNewUser = ({ user }) => {
         }
     }
 {/* <div className="border border-gray-200 rounded-md flex flex-col gap-4 py-5"></div> */}
-    return <div className="flex flex-col gap-4 py-5">
+    return <div className="flex flex-col gap-4 py-5 border border-gray-200 shadow-md rounded-md py-8">
         <UsersIcon />
         <AddNewUserSearchBar open={newUserSearchBarOpen} setOpen={setNewUserSearchBarOpen} newUser={newUser} setNewUser={setNewUser} handleNewAddUser={handleNewAddUser} />
         <AddNewUserOutline loading={addingUser} onClick={() => setNewUserSearchBarOpen(true)} />
