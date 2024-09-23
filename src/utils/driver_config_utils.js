@@ -15,6 +15,13 @@ const driverObjSettingsPageConfig = {
                 description: 'Enter twitter username to add new user'
             }
         },
+        {
+            element: '#help-button',
+            popover: {
+                title: 'Help',
+                description: 'If you need anything else, you can find me here'
+            }
+        }
     ]
 };
 
