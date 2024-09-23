@@ -16,10 +16,11 @@ const WorkingFlow = () => {
                 <div className="bg-white rounded-full px-1 py-2 shadow-lg mx-2">
                     <img src={Logo} className="logo mx-3" alt="Tweetify logo" width={50} />
                 </div>
-                <div className="flex flex-col gap-3 items-center">
+                <ArrowRight className="h-8 w-8 text-gray-600" />
+                {/* <div className="flex flex-col gap-3 items-center">
                     <ArrowRight className="h-8 w-8 text-gray-600" style={{ transform: 'rotate(-30deg)' }} />
                     <ArrowRight className="h-8 w-8 text-gray-600" style={{ transform: 'rotate(30deg)' }} />
-                </div>
+                </div> */}
             </div>
             <RedirectedTo />
         </div>
