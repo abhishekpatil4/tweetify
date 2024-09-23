@@ -19,6 +19,7 @@ const CreatePost = ({ user }) => {
     const [generatingQuotes, setGeneratingQuotes] = useState(false);
     const [allAuthorisedUsers, setAllAuthorisedUsers] = useState([]);
     const [handleDriverCreatePostPage, setHandleDriverCreatePostPage] = useState(() => { });
+    const [quoteGeneratorPrompt, setQuoteGeneratorPrompt] = useState("Generate repost quote for a tweet and emoji in the same string, keep it short, simple, informal and no filler words, also sound like a human");
     const fetchUserDetails = async () => {
         setLoading(true);
         try {
@@ -80,6 +81,7 @@ const CreatePost = ({ user }) => {
             const idToken = await auth.currentUser.getIdToken(true);
             const getQuotesURL = import.meta.env.VITE_BACKEND_URL + "/getquotes";
             const response = await axios.post(getQuotesURL, {
+                prompt: quoteGeneratorPrompt,
                 tweetContent: post,
                 numberOfQuotes: authorisedUsers.length
             }, {
@@ -115,7 +117,7 @@ const CreatePost = ({ user }) => {
         <div className="border border-gray-200 rounded-md bg-white px-16 py-8 gap-6 flex flex-col shadow-md" id="create-post-section">
             <Separator title="Create Post" />
             <div className="flex flex-col gap-8 items-center justify-center">
-                <CreatePostTextArea post={post} setPost={setPost} handlePost={handlePost} handleGenerateQuotes={handleGenerateQuotes} posting={posting} generatingQuotes={generatingQuotes} />
+                <CreatePostTextArea post={post} setPost={setPost} handlePost={handlePost} handleGenerateQuotes={handleGenerateQuotes} posting={posting} generatingQuotes={generatingQuotes} quoteGeneratorPrompt={quoteGeneratorPrompt} setQuoteGeneratorPrompt={setQuoteGeneratorPrompt} />
             </div>
         </div>
         <div className="mt-12 pt-8 pb-16  border border-gray-200 rounded-md bg-white shadow-md" id="reposters-section-for-create-post">

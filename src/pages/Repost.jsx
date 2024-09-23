@@ -24,6 +24,7 @@ const RepostExistingTweet = ({ user }) => {
     const [generatingQuotes, setGeneratingQuotes] = useState(false);
     const [allAuthorisedUsers, setAllAuthorisedUsers] = useState([]);
     const [handleDriverRepostPage, setHandleDriverRepostPage] = useState(() => { });
+    const [quoteGeneratorPrompt, setQuoteGeneratorPrompt] = useState("Generate repost quote for a tweet and emoji in the same string, keep it short, simple, informal and no filler words, also sound like a human");
 
     const handleGetTweetText = async () => {
         setTwitterPostUrlLoading(true);
@@ -116,6 +117,7 @@ const RepostExistingTweet = ({ user }) => {
             const idToken = await auth.currentUser.getIdToken(true);
             const getQuotesURL = import.meta.env.VITE_BACKEND_URL + "/getquotes";
             const response = await axios.post(getQuotesURL, {
+                prompt: quoteGeneratorPrompt,
                 tweetContent: post,
                 numberOfQuotes: authorisedUsers.length
             }, {
@@ -154,7 +156,7 @@ const RepostExistingTweet = ({ user }) => {
             <Separator title="Get Post" />
             <div className="flex flex-col gap-4 items-center justify-center">
                 <SettingsAttribute type="password" displayName="Tweet Url" value={twitterPostUrl} linkAction={handleGetTweetText} loading={twitterPostUrlLoading} buttonName="Get" onChangeFunction={setTwitterPostUrl} readOnly={false} nolabel={true} placeholder="enter tweet url" id="tweet-url-input" />
-                <GetPostTextArea post={post} setPost={setPost} handlePost={handlePost} handleGenerateQuotes={handleGenerateQuotes} posting={posting} generatingQuotes={generatingQuotes} />
+                <GetPostTextArea post={post} setPost={setPost} handlePost={handlePost} handleGenerateQuotes={handleGenerateQuotes} posting={posting} generatingQuotes={generatingQuotes} quoteGeneratorPrompt={quoteGeneratorPrompt} setQuoteGeneratorPrompt={setQuoteGeneratorPrompt} />
             </div>
         </div>
         {/* <div className="border border-gray-200 rounded-md flex flex-col gap-4 py-5 mt-12"> */}

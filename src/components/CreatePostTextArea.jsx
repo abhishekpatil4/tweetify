@@ -2,7 +2,7 @@ import 'rsuite/Loader/styles/index.css';
 import { Loader } from 'rsuite';
 import ComingSoon from './ComingSoon';
 import { useState } from 'react';
-export default function CreatePostTextArea({ post, setPost, handlePost, handleGenerateQuotes, posting, generatingQuotes }) {
+export default function CreatePostTextArea({ post, setPost, handlePost, handleGenerateQuotes, posting, generatingQuotes, quoteGeneratorPrompt, setQuoteGeneratorPrompt }) {
     const [comingSoon, setComingSoon] = useState(false);
     return (
         <div className="flex items-start w-full">
@@ -48,7 +48,7 @@ export default function CreatePostTextArea({ post, setPost, handlePost, handleGe
                     </div>
                 </form>
             </div>
-            <ComingSoon open={comingSoon} setOpen={setComingSoon} />
+            <ComingSoon open={comingSoon} setOpen={setComingSoon} quoteGeneratorPrompt={quoteGeneratorPrompt} setQuoteGeneratorPrompt={setQuoteGeneratorPrompt}/>
         </div>
     )
 }

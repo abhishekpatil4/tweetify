@@ -1,7 +1,9 @@
 import 'rsuite/Loader/styles/index.css';
 import { Loader } from 'rsuite';
-
-export default function GetPostTextArea({ post, setPost, handlePost, handleGenerateQuotes, posting, generatingQuotes }) {
+import ComingSoon from './ComingSoon';
+import { useState } from 'react';
+export default function GetPostTextArea({ post, setPost, handlePost, handleGenerateQuotes, posting, generatingQuotes, quoteGeneratorPrompt, setQuoteGeneratorPrompt }) {
+    const [comingSoon, setComingSoon] = useState(false);
     return (
         <div className="flex items-start w-full">
             <div className="min-w-0 flex-1">
@@ -22,7 +24,7 @@ export default function GetPostTextArea({ post, setPost, handlePost, handleGener
                     </div>
                     <div className="absolute inset-x-0 bottom-0 flex justify-between p-3">
                         <div className="flex items-center space-x-5">
-                            <button type="button" className="text-sm text-gray-500 hover:text-gray-700 bg-gray-200 rounded-full px-3 py-1">Advanced Options</button>
+                            <button onClick={() => setComingSoon(true)} type="button" className="text-sm text-gray-500 hover:text-gray-700 bg-gray-200 rounded-full px-3 py-1">Advanced Options</button>
                         </div>
                         <div className="flex-shrink-0 flex gap-2">
                             <button
@@ -44,6 +46,7 @@ export default function GetPostTextArea({ post, setPost, handlePost, handleGener
                     </div>
                 </form>
             </div>
+            <ComingSoon open={comingSoon} setOpen={setComingSoon} quoteGeneratorPrompt={quoteGeneratorPrompt} setQuoteGeneratorPrompt={setQuoteGeneratorPrompt}/>
         </div>
     )
 }
