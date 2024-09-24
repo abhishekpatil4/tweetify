@@ -14,7 +14,6 @@ llm = ChatOpenAI(model="gpt-4o")
 def repost_tweet(admin_entity_id: str, entity_id: str, task_description: str) -> str:
     comp_api_key = get_composio_api_key(admin_entity_id)    
     composio_toolset = ComposioToolSet(api_key=comp_api_key, entity_id=entity_id)
-    # tools = composio_toolset.get_actions(actions=[Action.TWITTER_CREATION_OF_A_POST, Action.TWITTER_CAUSES_THE_USER_IN_THE_PATH_TO_REPOST_THE_SPECIFIED_POST, Action.TWITTER_USER_LOOKUP_BY_USERNAME])
     tools = composio_toolset.get_actions(actions=[Action.TWITTER_CREATION_OF_A_POST, Action.TWITTER_CAUSES_THE_USER_IN_THE_PATH_TO_REPOST_THE_SPECIFIED_POST])
     twitter_agent = Agent(
         role="Twitter Agent",

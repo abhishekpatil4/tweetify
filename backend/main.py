@@ -16,8 +16,8 @@ logger = logging.getLogger(__name__)
 app = FastAPI()
 
 origins = [
+    "https://tweetify-three.vercel.app",
     "http://localhost:5173",
-    "https://gmail-assistant-six.vercel.app",
     "http://localhost",
 ]
 
