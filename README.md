@@ -2,12 +2,11 @@
 *Improve your Twitter game with Tweetify! Create posts, share permissions effortlessly, and let our AI generate engaging retweet content. Amplify your reach while you focus on what matters most*
 
 ## Demo
-### Check it out on Replit
+[![Live Demo](https://img.shields.io/badge/Live%20Link-Vercel-black?logo=vercel&style=for-the-badge)](https://tweetify-three.vercel.app)
 [![Open in Replit](https://img.shields.io/badge/Open%20in-Replit-blue?logo=replit&style=for-the-badge)](https://replit.com/@abishkpatil/tweetify?v=1)
-### Watch tutorial on youtube
 [![Watch on YouTube](https://img.shields.io/badge/Watch%20on-YouTube-red?logo=youtube&style=for-the-badge)](https://www.youtube.com/)
 
-### Live Demo ([Live Link](https://tweetify-three.vercel.app))
+### Live Demo
 [![tweetify-demo](https://github.com/user-attachments/assets/c1582f92-a4a7-460b-8c65-cf48a4fa1084)](https://drive.google.com/file/d/1hQSjQc0GdQj8kPrrIlqLJvPzUpphU5hc/preview)
 
 ## Description
