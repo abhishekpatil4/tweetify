@@ -4,12 +4,14 @@
 ## Demo
 ### Check it out on Replit
 [![Open in Replit](https://img.shields.io/badge/Open%20in-Replit-blue?logo=replit&style=for-the-badge)](https://replit.com/@abishkpatil/tweetify?v=1)
+### Watch tutorial on youtube
+[![Watch on YouTube](https://img.shields.io/badge/Watch%20on-YouTube-red?logo=youtube&style=for-the-badge)](https://www.youtube.com/)
 
 ### Live Demo ([Live Link](https://tweetify-three.vercel.app))
-[![gmailgenius-demo](https://github.com/user-attachments/assets/abb24495-d242-42f3-8cff-599182f735f4)](https://drive.google.com/file/d/1hQSjQc0GdQj8kPrrIlqLJvPzUpphU5hc/preview)
+[![tweetify-demo](https://github.com/user-attachments/assets/c1582f92-a4a7-460b-8c65-cf48a4fa1084)](https://drive.google.com/file/d/1hQSjQc0GdQj8kPrrIlqLJvPzUpphU5hc/preview)
 
 ## Description
-Tweetify is an AI agent using which you can create posts easily, get authorisation from other users to repost tweets on their behalf, generate repost quote using AI
+Tweetify is an AI agent using which you can create posts, get authorisation from other users to repost tweets on their behalf, generate repost quote using AI
 
 ## Tech Stack
 - Frontend: ReactJS, Vite, TailwindCSS
@@ -22,15 +24,14 @@ Tweetify is an AI agent using which you can create posts easily, get authorisati
 [![gmailgenius-demo](https://github.com/user-attachments/assets/abb24495-d242-42f3-8cff-599182f735f4)](https://drive.google.com/file/d/1kC9oVSUatqQ6Tcs3u6CTsVsmczzG-F6k/preview)
 
 Clone the project
-
 ```bash
-  git clone https://github.com/ComposioHQ/cookbook.git
+  git clone https://github.com/abhishekpatil4/tweetify.git
 ```
 
 Go to the project directory
 
 ```bash
-  cd gmail-assistant/gmail-assistant-firebase
+  cd tweetify
 ```
 
 ### Backend
@@ -47,12 +48,6 @@ Start the server
 
 ```bash
   python main.py
-```
-
-Start the agent
-
-```bash
-  python agent.py
 ```
 
 ### Frontend
@@ -77,8 +72,4 @@ If you're prompted to login & enter API key, run the below command to login
 ```
 
 You'll be redirected to composio website, login, get the API key and paste it
-
-## 🛡️ License
-
-Composio is licensed under the Elastic License - see the [LICENSE](https://github.com/composiodev/composio/blob/master/LICENSE) file for details.
   
