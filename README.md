@@ -1,37 +1,21 @@
-
-
-# ⚡️GmailGenius: Supercharge your Gmail
-*Automatically processes new emails, extracts data from attachments, and organizes everything in a spreadsheet!*
+# Tweetify 
+*Improve your Twitter game with Tweetify! Create posts, share permissions effortlessly, and let our AI generate engaging retweet content. Amplify your reach while you focus on what matters most*
 
 ## Demo
 ### Check it out on Replit
-[![Open in Replit](https://img.shields.io/badge/Open%20in-Replit-blue?logo=replit&style=for-the-badge)](https://replit.com/@abishkpatil/gmail-assistant-fb)
+[![Open in Replit](https://img.shields.io/badge/Open%20in-Replit-blue?logo=replit&style=for-the-badge)](https://replit.com/@abishkpatil/tweetify?v=1)
 
-### Live Demo ([Live Link](https://gmail-assistant-six.vercel.app/))
-[![gmailgenius-demo](https://github.com/user-attachments/assets/abb24495-d242-42f3-8cff-599182f735f4)](https://drive.google.com/file/d/1_CWZ3yNK4pxe8Ey1bnQq4C6H_lEHDICb/preview)
+### Live Demo ([Live Link](https://tweetify-three.vercel.app))
+[![gmailgenius-demo](https://github.com/user-attachments/assets/abb24495-d242-42f3-8cff-599182f735f4)](https://drive.google.com/file/d/1hQSjQc0GdQj8kPrrIlqLJvPzUpphU5hc/preview)
 
 ## Description
-GmailGenius simplifies the process of finding relevant emails, downloading attachments, and extracting key data. Here's how it works:
-
-1. **Sign up on GmailGenius** and link your Gmail account and Google Sheet
-2. **Enter keywords** you want the AI agent to look for in your email
-3. **GmailGenius finds emails and attachments** from Gmail that match your keyword criteria
-4. **Useful information from the attachments is extracted and stored** in your linked Google Sheet.
-
-### Under the hood, the AI agent divides the task into multiple steps and executes them:
-
-<img width="1664" alt="Screenshot 2024-09-02 at 12 53 53 AM" src="https://github.com/user-attachments/assets/07d51b40-dbd1-4406-9a28-942a4c1e6f86">
-
-1. **Retrieves emails from Gmail** that match the keyword/phrase criteria.
-2. **Downloads** the relevant attachments.
-3. **Extracts useful attributes** from the email body & attachments.
-4. **Stores** the extracted data in the linked Google Sheet.
+Tweetify is an AI agent using which you can create posts easily, get authorisation from other users to repost tweets on their behalf, generate repost quote using AI
 
 ## Tech Stack
 - Frontend: ReactJS, Vite, TailwindCSS
 - Backend: Python, FastAPI
-- AI Agent: CrewAI, Composio, OpenAI
-- Composio tools: [Gmail](https://app.composio.dev/app/gmail), [Google Sheets](https://app.composio.dev/app/googlesheets)
+- AI Agent: CrewAI
+- Composio tools: [Twitter](https://app.composio.dev/app/twitter)
 
 ## Run Locally
 ### Setup tutorial
