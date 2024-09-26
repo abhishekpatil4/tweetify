@@ -8,10 +8,6 @@ const Working = () => {
                     <span className="flex-1">Craft your <span className="text-gray-700 dark:text-gray-300 font-medium">tweet content</span> using Tweetify's intuitive interface, allowing you to compose engaging messages for your audience.</span>
                 </li>
                 <li className="flex items-start">
-                    <span className="font-semibold text-gray-900 dark:text-white w-full md:w-1/3 mb-2 md:mb-0">Schedule Your Tweet:</span>
-                    <span className="flex-1">Choose the perfect time for your tweet to go live by utilizing our <span className="text-gray-700 dark:text-gray-300 font-medium">scheduling feature</span>, ensuring maximum engagement with your followers.</span>
-                </li>
-                <li className="flex items-start">
                     <span className="font-semibold text-gray-900 dark:text-white w-full md:w-1/3 mb-2 md:mb-0">Generate Sharing Links:</span>
                     <span className="flex-1">Tweetify creates unique <span className="text-gray-700 dark:text-gray-300 font-medium">permission links</span> that you can share with others, allowing them to connect their Twitter accounts and grant you posting privileges.</span>
                 </li>
