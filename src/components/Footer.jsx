@@ -11,13 +11,13 @@ const Footer = () => {
                         <h2 className="mb-6 text-sm font-semibold text-gray-900 uppercase dark:text-white">Resources</h2>
                         <ul className="text-gray-500 dark:text-gray-400 font-medium">
                             <li className="mb-3">
-                                <a href="https://github.com/ComposioHQ/cookbook/tree/master/gmail-assistant/gmail-assistant-firebase" className="hover:underline">Source Code</a>
+                                <a href="https://github.com/abhishekpatil4/tweetify" className="hover:underline">Source Code</a>
                             </li>
                             <li className="mb-3">
-                                <a href="https://replit.com/@abishkpatil/gmail-assistant-fb" className="hover:underline">Replit</a>
+                                <a href="https://replit.com/@abishkpatil/tweetify?v=1" className="hover:underline">Replit</a>
                             </li>
                             <li className="mb-3">
-                                <a href="https://composio.dev/gallery" className="hover:underline">Other Projects</a>
+                                <a href="https://youtu.be/ooMl1Wew1tk" className="hover:underline">How do build this?</a>
                             </li>
                         </ul>
                     </div>
